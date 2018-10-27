@@ -1,7 +1,8 @@
-import { IConfig, IServer, IRouter } from 'src/interfaces';
+import { IConfig, IServer, IRouter, ILogger } from 'src/interfaces';
 import { HttpServer } from 'src/types';
 import { fluentProvide, inject } from 'src/container';
 import { Identifier } from 'src/constants';
+import { LoggerRegistry } from 'src/infra/logger';
 
 import * as http from 'http';
 import * as express from 'express';
@@ -18,13 +19,16 @@ export class Server implements IServer {
   private server: HttpServer;
   private port: number;
   private router: IRouter;
+  private logger: ILogger;
 
   constructor(
     @inject(Identifier.Config) config: IConfig,
-    @inject(Identifier.MainRouter) router
+    @inject(Identifier.MainRouter) router,
+    @inject(Identifier.LoggerRegistry) loggerRegistry: LoggerRegistry
   ) {
     this.port = config.port;
     this.router = router;
+    this.logger = loggerRegistry.register('app');
   }
 
   start(): HttpServer {
@@ -41,7 +45,7 @@ export class Server implements IServer {
     app.disable('x-powered-by');
 
     this.server = http.createServer(app).listen(this.port, () => {
-      console.log(`App listening on port ${this.port}`);
+      this.logger.info(`[PID ${process.pid}] Listening at port ${this.port}`);
     });
 
     return this.server;
