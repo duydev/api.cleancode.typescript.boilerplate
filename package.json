@@ -6,5 +6,17 @@
   "repository": "git@github.com:duydev/api.cleancode.typescript.boilerplate.git",
   "author": "Trần Nhật Duy <trannhatduy297@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "dev": "nodemon -r ts-node/register --inspect=6969 src/index.ts"
+  },
+  "dependencies": {
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "tslint-config-airbnb-base": "^0.2.0",
+    "typescript": "^3.1.3"
+  }
 }
