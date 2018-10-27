@@ -1,0 +1,10 @@
+{
+  "name": "api.cleancode.typescript.boilerplate",
+  "version": "1.0.0",
+  "description": "An api boilerplate apply clean code architecture and use type script.",
+  "main": "index.js",
+  "repository": "git@github.com:duydev/api.cleancode.typescript.boilerplate.git",
+  "author": "Trần Nhật Duy <trannhatduy297@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
